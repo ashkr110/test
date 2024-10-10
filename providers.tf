@@ -16,6 +16,6 @@ terraform {
 provider "aws" {
   region                   = "ap-south-1"
   # shared_credentials_files = ["~/.aws/credentials"]
-  # access_key = var.aws_access_key
-  # secret_key = var.aws_secret_key
+  access_key = '${{ secrets.AWS_ACCESS_KEY_ID }}'
+  secret_key = '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
 }
