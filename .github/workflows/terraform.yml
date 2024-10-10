@@ -61,21 +61,21 @@ jobs:
 
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
-      - uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: '${{ env.TF_VERSION }}'
 
       - name: Validate
-      - run: terraform init && terraform validate
+        run: terraform init && terraform validate
 
       - name: Plan
-      - run: terraform plan
+        run: terraform plan
 
       - name: Apply
-      - run: terraform apply -auto-approve
+        run: terraform apply -auto-approve
 
       - name: Destroy
         if: github.event_name == 'workflow_dispatch'
