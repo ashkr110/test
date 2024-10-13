@@ -54,7 +54,7 @@ env:
   TF_IN_AUTOMATION: true
 
 jobs:
-  terraform:
+  Apply:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -77,8 +77,19 @@ jobs:
 
       - name: Apply
         run: terraform apply -auto-approve
+  
+  Destroy:
+    runs-on: unbuntu-latest
+    needs: [Apply]
+
+    steps:
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_versions: '${{ env.TF_VERSION }}'
 
       - name: Destroy
-        run: terraform destroy -auto-approve
-        if: github.event_name == 'workflow_dispatch'
-        needs: [Apply]
+        run: terafform destroy --auto-approve
+        if: github_event_name = 'workflow_dispatch'
+              
+  
