@@ -45,5 +45,5 @@ jobs:
           terraform_versions: '${{ env.TF_VERSION }}'
 
       - name: Destroy
-        run: terafform destroy --auto-approve
+        run: terraform destroy --auto-approve
         if: github.event_name == 'workflow_dispatch'
